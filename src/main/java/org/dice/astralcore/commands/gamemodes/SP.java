@@ -10,15 +10,13 @@ import org.jetbrains.annotations.NotNull;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
-public class S implements CommandExecutor {
+public class SP implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, Command cmd, @NotNull String s, String[] strings){
-
-        if (cmd.getName().equalsIgnoreCase("s") && sender.hasPermission("gm.survival") && sender instanceof Player p) {
-            p.setGameMode(GameMode.SURVIVAL);
+        if (cmd.getName().equalsIgnoreCase("sp") && sender.hasPermission("gm.spectator") && sender instanceof Player p) {
+            p.setGameMode(GameMode.SPECTATOR);
         } else {
-            Logger logger = Logger.getLogger(S.class.getName());
+            Logger logger = Logger.getLogger(SP.class.getName());
             logger.log(Level.WARNING, "[WARN] This is not a console command!");
 
         }

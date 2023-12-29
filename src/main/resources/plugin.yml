@@ -8,5 +8,10 @@ description: Core for Astral Server
 website: https://github.com/bgduque
 commands:
   s:
-    description: Survival Gamemode
-    usage: /s [args]
+    description: Survival Game mode
+    usage: /s
+    permission: gm.survival
+  sp:
+    description: Spectator Game Mode
+    usage: /sp
+    permission: gm.spectator
