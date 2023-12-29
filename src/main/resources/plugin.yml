@@ -1,0 +1,12 @@
+name: astral-core
+version: '${version}'
+main: org.dice.astralcore.Main
+api-version: '1.20'
+load: STARTUP
+authors: [Boris Duque]
+description: Core for Astral Server
+website: https://github.com/bgduque
+commands:
+  s:
+    description: Survival Gamemode
+    usage: /s [args]
