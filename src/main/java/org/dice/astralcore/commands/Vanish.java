@@ -9,6 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
+import org.dice.astralcore.Main;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashSet;
@@ -17,9 +18,12 @@ import java.util.Set;
 public class Vanish implements CommandExecutor {
 
     private final Set<Player> vanishedPlayers = new HashSet<>();
-    private final Plugin plugin;
+    private Main plugin;
 
-    public Vanish(Plugin plugin) {
+    public Vanish() {
+    }
+
+    public Vanish(Main plugin) {
         this.plugin = plugin;
     }
 
@@ -40,6 +44,11 @@ public class Vanish implements CommandExecutor {
         Player p = (Player) commandSender;
 
         if (!p.hasPermission("v.use")) { return false; }
+
+        if (plugin == null) {
+            System.out.print("Plugin not initialized");
+            return true;
+        }
 
         if (vanishedPlayers.contains(p)) {
             for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {

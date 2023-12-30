@@ -19,9 +19,11 @@ commands:
     description: Creative Game mode
     usage: /c
     permission: gm.creative
-  v:
+  vanish:
+    aliases:
+      - v
     description: Vanish command
-    usage: /v
+    usage: /vanish
     permissions:
       v.use:
         description: Allow to use the command
@@ -37,3 +39,9 @@ commands:
     description: Flight mode On/Off
     usage: /fly
     permission: a.fly
+  speed:
+    aliases:
+      - fs
+    description: Set speed mode on flight.
+    usage: /fs
+    permission: core.setFlySpeed

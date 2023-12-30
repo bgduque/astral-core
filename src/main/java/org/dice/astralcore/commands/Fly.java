@@ -23,6 +23,7 @@ public class Fly implements CommandExecutor {
         if (commandSender.hasPermission("a.fly")) {
             if (p.getAllowFlight()) {
                 p.sendMessage("Flight Disabled!");
+                p.setAllowFlight(false);
                 p.setFlying(false);
             } else {
                 p.sendMessage("Flight Enabled!");
