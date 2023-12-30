@@ -1,35 +1,60 @@
 package org.dice.astralcore;
 
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.dice.astralcore.commands.Fly;
-import org.dice.astralcore.commands.Heal;
 import org.dice.astralcore.commands.Vanish;
-import org.dice.astralcore.commands.gamemodes.C;
-import org.dice.astralcore.commands.gamemodes.S;
-import org.dice.astralcore.commands.gamemodes.SP;
 import org.dice.astralcore.events.VanishListener;
+import org.reflections.Reflections;
 
-import java.util.Objects;
+//import java.util.Objects;
+import java.lang.reflect.Constructor;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Main extends JavaPlugin {
     private Vanish vanishCmd;
 
     @Override
     public void onEnable(){
+        getLogger().fine("[Core] Enabled!");
         vanishCmd = new Vanish(this);
         getServer().getPluginManager().registerEvents(new VanishListener(vanishCmd), this);
         registerCommands();
     }
 
-    private void registerCommands(){
-        Objects.requireNonNull(getCommand("v")).setExecutor(vanishCmd);
-        Objects.requireNonNull(getCommand("fly")).setExecutor(new Fly());
-        Objects.requireNonNull(getCommand("heal")).setExecutor(new Heal());
-        Objects.requireNonNull(getCommand("c")).setExecutor(new C());
-        Objects.requireNonNull(getCommand("s")).setExecutor(new S());
-        Objects.requireNonNull(getCommand("sp")).setExecutor(new SP());
-
-
+    @Override
+    public void onDisable() {
+        getLogger().fine("[Core] Disabled!");
     }
 
+    private void registerCommands(){
+        Reflections reflections = new Reflections("org.dice.astralcore.commands");
+        Set<Class<? extends CommandExecutor>> classes = reflections.getSubTypesOf(CommandExecutor.class);
+
+        for (Class<? extends CommandExecutor> c : classes ) {
+            try {
+                CommandExecutor executor;
+                String commandName = c.getSimpleName();
+                PluginCommand command = getCommand(commandName);
+
+                try {
+                    Constructor<? extends CommandExecutor> constructor = c.getDeclaredConstructor(Main.class);
+                    executor = constructor.newInstance(this);
+                } catch (NoSuchMethodException e) {
+                    executor = c.getDeclaredConstructor().newInstance();
+                }
+
+                if (command != null) {
+                    command.setExecutor(executor);
+                } else {
+                    getLogger().warning("Command " + commandName + " not found in plugin.yml!");
+                }
+            } catch (Exception e) {
+                getLogger().severe("Failed to Register command: " + c.getName());
+                e.printStackTrace();
+            }
+        }
+    }
 }
