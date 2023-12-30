@@ -7,11 +7,8 @@ import org.dice.astralcore.commands.Vanish;
 import org.dice.astralcore.events.VanishListener;
 import org.reflections.Reflections;
 
-//import java.util.Objects;
 import java.lang.reflect.Constructor;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Main extends JavaPlugin {
     private Vanish vanishCmd;

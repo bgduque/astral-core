@@ -7,14 +7,10 @@ import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 public class Speed implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
         if (commandSender instanceof ConsoleCommandSender) {
-            Logger.getLogger(Speed.class.getName()).log(Level.WARNING, "This is not a console command!");
             return false;
         }
 
@@ -33,7 +29,12 @@ public class Speed implements CommandExecutor {
                     return true;
                 }
                 p.setFlySpeed(speed);
-                p.sendMessage("Set speed to " + strings[0]);
+                if (p.getAllowFlight()) {
+                    p.sendMessage("Set speed to " + strings[0]);
+                } else {
+                    p.sendMessage("You're not flying, that's impossible to do.");
+                }
+
             } catch (NumberFormatException e) {
                 p.sendMessage("Invalid speed value.");
             }

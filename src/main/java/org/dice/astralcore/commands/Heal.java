@@ -9,14 +9,11 @@ import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-public class Heal implements CommandExecutor {
+public class Heal implements CommandExecutor{
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
         if (commandSender instanceof ConsoleCommandSender) {
-            Logger.getLogger(Heal.class.getName()).log(Level.WARNING, "This cannot be executed in the Console!");
+            return false;
         }
 
         Player p = (Player) commandSender;
