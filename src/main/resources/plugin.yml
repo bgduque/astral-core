@@ -15,3 +15,25 @@ commands:
     description: Spectator Game Mode
     usage: /sp
     permission: gm.spectator
+  c:
+    description: Creative Game mode
+    usage: /c
+    permission: gm.creative
+  v:
+    description: Vanish command
+    usage: /v
+    permissions:
+      v.use:
+        description: Allow to use the command
+        default: op
+      v.see:
+        description: Allow to see the vanished administrators
+        default: op
+  heal:
+    description: Heal command
+    usage: /heal
+    permission: a.heal
+  fly:
+    description: Flight mode On/Off
+    usage: /fly
+    permission: a.fly
