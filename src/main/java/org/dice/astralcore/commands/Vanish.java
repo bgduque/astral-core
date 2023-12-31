@@ -38,7 +38,8 @@ public class Vanish implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
         if (commandSender instanceof ConsoleCommandSender) {
-            System.out.println("This is not a console command!");
+            getPlugin().getLogger().warning("This is not a viable command for here.");
+            return true;
         }
 
         Player p = (Player) commandSender;
