@@ -45,3 +45,9 @@ commands:
     description: Set speed mode on flight.
     usage: /fs
     permission: core.setFlySpeed
+  freeze:
+    aliases:
+      - fz
+    usage: /freeze
+    description: Freezes a player.
+    permission: ac.Freeze
