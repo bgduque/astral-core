@@ -4,12 +4,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerMoveEvent;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashSet;
@@ -31,6 +27,12 @@ public class Freeze implements CommandExecutor, Listener {
             return true;
         }
 
+        /*Here we actually can see that the value of player
+        has been initialized and instated as the command sender
+        if the commandSender is ! a player then it returns,
+        executes the last block, and it does not go on.
+         */
+
         if (frozenPlayers.contains(target)) {
             frozenPlayers.remove(target);
             target.sendMessage("You have been unfrozen!");
@@ -42,12 +44,5 @@ public class Freeze implements CommandExecutor, Listener {
             return true;
         }
         return true;
-    }
-
-    @EventHandler(priority = EventPriority.HIGH)
-    public void onPlayerMovement(PlayerMoveEvent event) {
-        if (frozenPlayers.contains(event.getPlayer()) || event.getPlayer().isFlying()) {
-            event.setCancelled(true);
-        }
     }
 }
