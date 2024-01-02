@@ -27,7 +27,6 @@ public class Fly implements CommandExecutor {
                 p.setFlying(true);
             }
         }
-
         return true;
     }
 }

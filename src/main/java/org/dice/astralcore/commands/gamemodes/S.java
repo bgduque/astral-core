@@ -18,9 +18,8 @@ public class S implements CommandExecutor {
         if (cmd.getName().equalsIgnoreCase("s") && sender.hasPermission("gm.survival") && sender instanceof Player p) {
             p.setGameMode(GameMode.SURVIVAL);
         } else {
-            Logger logger = Logger.getLogger(S.class.getName());
-            logger.log(Level.WARNING, "[WARN] This is not a console command!");
-
+            sender.sendMessage("[WARN] This is not a console command!");
+            return true;
         }
 
         return true;

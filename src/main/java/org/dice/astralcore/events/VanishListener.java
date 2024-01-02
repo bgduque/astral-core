@@ -6,12 +6,15 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.dice.astralcore.Main;
 import org.dice.astralcore.commands.Vanish;
 
 public class VanishListener implements Listener {
     private final Vanish vanish;
-    public VanishListener(Vanish vanish) {
+    private final Main mainInstance;
+    public VanishListener(Vanish vanish, Main mainInstance) {
         this.vanish = vanish;
+        this.mainInstance = mainInstance;
     }
 
     @EventHandler(priority = EventPriority.HIGH)

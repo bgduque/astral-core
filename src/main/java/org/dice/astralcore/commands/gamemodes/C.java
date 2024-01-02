@@ -18,9 +18,8 @@ public class C implements CommandExecutor {
         if (cmd.getName().equalsIgnoreCase("c") && sender.hasPermission("gm.creative") && sender instanceof Player p) {
             p.setGameMode(GameMode.CREATIVE);
         } else {
-            Logger logger = Logger.getLogger(C.class.getName());
-            logger.log(Level.WARNING, "[WARN] This is not a console command!");
-
+            sender.sendMessage("[WARN] This is not a console command!");
+            return true;
         }
 
         return true;

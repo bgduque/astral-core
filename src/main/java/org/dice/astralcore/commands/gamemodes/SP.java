@@ -16,9 +16,8 @@ public class SP implements CommandExecutor {
         if (cmd.getName().equalsIgnoreCase("sp") && sender.hasPermission("gm.spectator") && sender instanceof Player p) {
             p.setGameMode(GameMode.SPECTATOR);
         } else {
-            Logger logger = Logger.getLogger(SP.class.getName());
-            logger.log(Level.WARNING, "[WARN] This is not a console command!");
-
+            sender.sendMessage("[WARN] This is not a console command!");
+            return true;
         }
 
         return true;
