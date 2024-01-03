@@ -10,6 +10,7 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onEnable(){
+        vanish = new Vanish();
         register = new Register(this, vanish);
         register.command();
         register.events();

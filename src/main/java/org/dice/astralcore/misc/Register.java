@@ -60,18 +60,12 @@ public class Register {
 
         for (Class<? extends Listener> c : classes) {
             try {
-                Listener listener;
-
-                try {
-                    Constructor<? extends Listener> constructor = c.getDeclaredConstructor(Main.class);
-                    listener = constructor.newInstance(mainInstance);
-                } catch (NoSuchMethodException e) {
-                    listener = c.getDeclaredConstructor().newInstance();
-                }
+                Constructor<? extends Listener> constructor = c.getDeclaredConstructor(Main.class, Vanish.class);
+                Listener listener = constructor.newInstance(mainInstance, vanish);
 
                 pluginManager.registerEvents(listener, mainInstance);
             } catch (Exception e) {
-                getLogger().severe("Failed to register the event: " + c.getName());
+                getLogger().severe("Failed to register event(s): " + c.getName());
                 e.printStackTrace();
             }
         }
