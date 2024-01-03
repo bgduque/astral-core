@@ -10,7 +10,7 @@ public class onFreezeListener implements Listener {
     private Freeze freeze;
     @EventHandler(priority = EventPriority.HIGH)
     public void onFrozenState(PlayerMoveEvent event) {
-        if (event.getPlayer().isFrozen()) {
+        if (freeze.getFrozenPlayers().contains(event.getPlayer())) {
             event.setCancelled(false);
         }
     }

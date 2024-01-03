@@ -14,6 +14,10 @@ import java.util.Set;
 public class Freeze implements CommandExecutor, Listener {
     private final Set<Player> frozenPlayers = new HashSet<>();
 
+    public Set<Player> getFrozenPlayers() {
+        return frozenPlayers;
+    }
+
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
 

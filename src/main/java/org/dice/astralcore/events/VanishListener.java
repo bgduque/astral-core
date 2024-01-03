@@ -12,6 +12,7 @@ import org.dice.astralcore.commands.Vanish;
 public class VanishListener implements Listener {
     private final Vanish vanish;
     private final Main mainInstance;
+
     public VanishListener(Vanish vanish, Main mainInstance) {
         this.vanish = vanish;
         this.mainInstance = mainInstance;
